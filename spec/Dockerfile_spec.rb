@@ -2,7 +2,8 @@ require "docker"
 
 describe "Dockerfile" do
   before(:all) {
-    @image = Docker::Image.build_from_dir('.')
+    @image = Docker::Image.all
+    .detect{ |i| i.info["RepoTags"] == ["infoslack/docker-nginx:latest"] }
   }
 
   it "Image should exist" do
